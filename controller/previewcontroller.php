@@ -124,6 +124,9 @@ class PreviewController extends Controller {
 	 * @return ImageResponse|Http\JSONResponse
 	 */
 	public function getPreview($fileId, $width, $height) {
+		// Shameless horrible hack, set mgm to talk to slave
+		\OC\Files\ObjectStore\EosUtil::$useSlave = true;
+
 		/** @type File $file */
 		list($file, $preview, $status) = $this->getData($fileId, $width, $height);
 
