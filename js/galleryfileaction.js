@@ -109,7 +109,9 @@
 						width: longEdge,
 						height: longEdge,
 						c: file.etag,
-						requesttoken: oc_requesttoken
+						requesttoken: oc_requesttoken,
+						file: dir + file.name, // HACK(labkode) Check gallery php backend
+						mount: file.mountType || '' // HACK(labkode) Check gallery php backend
 					};
 					imageUrl = galleryFileAction.buildGalleryUrl('preview', '/' + file.id, params);
 					params = {
