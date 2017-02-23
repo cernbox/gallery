@@ -37,8 +37,8 @@ class PreviewPublicController extends PreviewController {
 	 * @param bool $square
 	 * @param float $scale
 	 */
-	public function getThumbnails($ids, $square, $scale) {
-		return parent::getThumbnails($ids, $square, $scale);
+	public function getThumbnails($ids, $square, $scale, $paths) {
+		return parent::getThumbnails($ids, $square, $scale, $paths);
 	}
 
 	/**

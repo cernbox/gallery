@@ -80,6 +80,7 @@
 				this.domHeight = targetHeight;
 				// img is a Thumbnail.image
 				this.domDef = this.getThumbnail(false).then(function (img) {
+					console.log(img);
 					$(img).css({
 						'height': targetHeight,
 						'width': targetHeight * image.thumbnail.ratio
