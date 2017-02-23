@@ -14,7 +14,6 @@
 
 namespace OCA\Gallery\Environment;
 
-use OC\Files\Filesystem;
 use OCP\IUserManager;
 use OCP\Share;
 use OCP\ILogger;
@@ -23,6 +22,7 @@ use OCP\Files\Folder;
 use OCP\Files\Node;
 use OCP\Files\File;
 use OCP\Files\NotFoundException;
+use Page\Gallery;
 
 /**
  * Builds the environment so that the services have access to the files and folders' owner
@@ -126,7 +126,7 @@ class Environment {
 		// Resolves reshares down to the last real share
 		$rootLinkItem = Share::resolveReShare($linkItem);
 		$origShareOwner = $rootLinkItem['uid_owner'];
-		\OC_Util::setupFS($origShareOwner);
+		$this->userFolder = \OC::$server->getUserFolder($origShareOwner);
 		$this->userFolder = $this->rootFolder->getUserFolder($origShareOwner);
 
 		// This is actually the node ID
@@ -171,8 +171,7 @@ class Environment {
 		$relativePath = $this->getRelativePath($this->fromRootToFolder);
 		$path = $relativePath . '/' . $subPath;
 		$node = $this->getNodeFromUserFolder($path);
-
-		return $this->getResourceFromId($node->getId());
+		return $this->getResourceFromId($subPath);
 	}
 
 	/**
@@ -362,15 +361,22 @@ class Environment {
 	private function getResourceFromFolderAndId($folder, $resourceId) {
 		// This is an horrible hack. I feel ashamed.
 		$filename = \OC::$server->getRequest()->getParam("file");
-		$mountType = \OC::$server->getRequest()->getParam("mount");
+		//$mountType = \OC::$server->getRequest()->getParam("mount");
 		$resourcesArray = array();
-		if ($mountType && $mountType === 'shared') {
+		if ($filename && \OCA\Gallery\Environment\Environment::isTokenBasedEnv() === false) {
 			$node = $folder->get($filename);
 			if($node) {
 				$resourcesArray[] = $node;
 			}
 		} else {
-			$resourcesArray = $folder->getById($resourceId);
+			if(ctype_digit($resourceId)) {
+				$resourcesArray = $folder->getById($resourceId);
+			} else {
+				$info = $folder->get($resourceId);
+				if($info) {
+					$resourcesArray[] = $info;
+				}
+			}
 		}
 
 		if ($resourcesArray[0] === null) {

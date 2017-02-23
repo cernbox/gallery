@@ -45,7 +45,7 @@ style(
 );
 ?>
 <div id="controls">
-	<div id='breadcrumbs'></div>
+	<!--<div id='breadcrumbs'></div>-->
 	<div class="left">
 		<!-- sorting buttons -->
 		<div id="sort-date-button" class="button sorting right-switch-button">
@@ -71,6 +71,7 @@ style(
 	</div>
 	<span class="right">
 		<!-- sharing button -->
+		<!--
 		<div id="share-button" class="button">
 			<img class="svg" src="<?php print_unescaped(
 				image_path('core', 'actions/share.svg')
@@ -79,7 +80,9 @@ style(
 		<a class="share" data-item-type="folder" data-item=""
 		   title="<?php p($l->t("Share")); ?>"
 		   data-possible-permissions="31"></a>
+		-->
 		<!-- info button -->
+		<!--
 		<div id="album-info-button" class="button">
 			<span class="ribbon black"></span>
 			<img class="svg" src="<?php print_unescaped(
@@ -90,6 +93,7 @@ style(
 			<div class="album-info-loader"></div>
 			<div class="album-info-content markdown-body"></div>
 		</div>
+		-->
 		<!-- button for opening the current album as file list -->
 		<div id="filelist-button" class="button view-switcher gallery">
 			<div id="button-loading"></div>

@@ -335,7 +335,7 @@
 				}
 			}).map(function (image) {
 				var name = OC.basename(image.path);
-				var previewUrl = Gallery.utility.getPreviewUrl(image.fileId, image.etag);
+				var previewUrl = Gallery.utility.getPreviewUrl(image.fileId, image.etag, image.path);
 				var params = {
 					c: image.etag,
 					requesttoken: oc_requesttoken

@@ -78,12 +78,12 @@ if (isset($request->server['REQUEST_URI'])) {
 		Util::addScript($appName, 'slideshow');
 		Util::addScript($appName, 'slideshowcontrols');
 		Util::addScript($appName, 'slideshowzoomablepreview');
-		//Util::addScript($appName, 'gallerybutton');
+		Util::addScript($appName, 'gallerybutton');
 
 		/**
 		 * Styles for the Files app
 		 */
 		Util::addStyle($appName, 'slideshow');
-		//Util::addStyle($appName, 'gallerybutton');
+		Util::addStyle($appName, 'gallerybutton');
 	}
 }// @codeCoverageIgnoreEnd

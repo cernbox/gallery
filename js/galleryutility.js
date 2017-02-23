@@ -102,7 +102,7 @@
 		 *
 		 * @return {string}
 		 */
-		getPreviewUrl: function (fileId, etag) {
+		getPreviewUrl: function (fileId, etag, path) {
 			var width = Math.floor(screen.width * window.devicePixelRatio);
 			var height = Math.floor(screen.height * window.devicePixelRatio);
 
@@ -119,7 +119,8 @@
 				c: etag,
 				width: longEdge,
 				height: longEdge,
-				requesttoken: oc_requesttoken
+				requesttoken: oc_requesttoken,
+				file: path
 			};
 			return this.buildGalleryUrl('preview', '/' + fileId, params);
 		},
