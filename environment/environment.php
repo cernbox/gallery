@@ -126,7 +126,7 @@ class Environment {
 		// Resolves reshares down to the last real share
 		$rootLinkItem = Share::resolveReShare($linkItem);
 		$origShareOwner = $rootLinkItem['uid_owner'];
-		$this->userFolder = \OC::$server->getUserFolder($origShareOwner);
+		\OC_Util::setupFS($origShareOwner);
 		$this->userFolder = $this->rootFolder->getUserFolder($origShareOwner);
 
 		// This is actually the node ID
