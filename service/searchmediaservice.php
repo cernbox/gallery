@@ -66,7 +66,8 @@ class SearchMediaService extends FilesService {
 			}
 			//$this->logger->debug("Sub-Node path : {path}", ['path' => $node->getPath()]);
 			$nodeType = $this->getNodeType($node);
-			$subFolders = array_merge($subFolders, $this->getAllowedSubFolder($node, $nodeType));
+			// HACK(labkode): we do not allow browsing subfolders. We only show thumbs for current folder
+			//$subFolders = array_merge($subFolders, $this->getAllowedSubFolder($node, $nodeType));
 			$albumImageCounter = $this->addMediaFile($node, $nodeType, $albumImageCounter);
 			if ($this->haveEnoughPictures($albumImageCounter, $subDepth)) {
 				break;

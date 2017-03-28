@@ -103,7 +103,6 @@ abstract class FilesService extends Service {
 	 * @return array|Folder
 	 */
 	protected function getAllowedSubFolder($node, $nodeType) {
-		return [$node];
 		if ($nodeType === 'dir') {
 			/** @var Folder $node */
 			if (!$node->nodeExists('.nomedia')) {
