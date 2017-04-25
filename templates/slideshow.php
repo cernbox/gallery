@@ -6,11 +6,6 @@
 	<input type="button" class="svg previous icon-view-previous"/>
 	<input type="button" class="svg exit icon-view-close"/>
 	<div class="notification"></div>
-	<div class="menu">
-		<input type="button" class="menuItem svg downloadImage icon-view-download hidden"/>
-		<input type="button"
-			   class="menuItem svg changeBackground icon-view-toggle-background hidden"/>
-	</div>
 	<div class="progress icon-view-pause"/>
 	<div class="name">
 		<div class="title"></div>

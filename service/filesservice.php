@@ -140,14 +140,7 @@ abstract class FilesService extends Service {
 	 * @return array|Folder
 	 */
 	protected function getAllowedSubFolder($node, $nodeType) {
-		if ($nodeType === 'dir') {
-			/** @var Folder $node */
-			if (!$node->nodeExists($this->ignoreAlbum)) {
-				return [$node];
-			}
-		}
-
-		return [];
+		return [$node];
 	}
 
 	/**

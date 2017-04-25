@@ -88,7 +88,7 @@ function Thumbnail (fileId, square) {
 		 *
 		 * @returns {{}}
 		 */
-		loadBatch: function (ids, square) {
+		loadBatch: function (ids, square, paths) {
 			var map = (square) ? Thumbnails.squareMap : Thumbnails.map;
 			// Prevents re-loading thumbnails when resizing the window
 			ids = ids.filter(function (id) {
@@ -104,6 +104,7 @@ function Thumbnail (fileId, square) {
 
 				}
 				var params = {
+					paths: paths.join(';'),
 					ids: ids.join(';'),
 					scale: window.devicePixelRatio,
 					square: (square) ? 1 : 0

@@ -44,7 +44,9 @@ trait Config {
 	 * @return array <string,null|array>
 	 */
 	private function getConfig($extraMediaTypes = false) {
-		$features = $this->configService->getFeaturesList();
+		// this app will try to load the configuration from a file called
+		// gallery.conf form user folders. FACEPALM
+		$features = array();
 
 		//$this->logger->debug("Features: {features}", ['features' => $features]);
 

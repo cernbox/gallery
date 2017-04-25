@@ -41,7 +41,7 @@ class SearchMediaService extends FilesService {
 	public function getMediaFiles($folderNode, $supportedMediaTypes, $features) {
 		$this->supportedMediaTypes = $supportedMediaTypes;
 		$this->features = $features;
-		$this->searchFolder($folderNode);
+		$this->searchFolder($folderNode, 1);
 
 		return [$this->images, $this->albums];
 	}
@@ -103,11 +103,7 @@ class SearchMediaService extends FilesService {
 	 * @return bool
 	 */
 	private function haveEnoughPictures($albumImageCounter, $subDepth) {
-		if ($subDepth === 0) {
-			return false;
-		}
-
-		return $albumImageCounter === 4;
+		return false;
 	}
 
 	/**
