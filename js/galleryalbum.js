@@ -402,9 +402,9 @@
 			var paths = [];
 			for(var i = 0; i < items.length; i++) {
 				var item = items[i];
-				if(fileIds.indexOf(id) !== -1) {
+				if(fileIds.indexOf(item.fileId) !== -1) {
 					paths.push(item.path);
-				} else if(squareFileIds.indexOf(id) !== -1) {
+				} else if(squareFileIds.indexOf(item.fileId) !== -1) {
 					paths.push(item.path);
 				}
 			}
