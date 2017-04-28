@@ -367,7 +367,7 @@ class Environment {
 				$resourcesArray[] = $node;
 			}
 		} else {
-			if(ctype_digit($resourceId)) {
+			if(ctype_digit("$resourceId")) {
 				$resourcesArray = $folder->getById($resourceId);
 			} else {
 				$info = $folder->get($resourceId);
