@@ -23,6 +23,7 @@ use OCP\Files\Folder;
 use OCP\Files\Node;
 use OCP\Files\File;
 use OCP\Files\NotFoundException;
+use Page\Gallery;
 
 /**
  * Builds the environment so that the services have access to the files and folders' owner
@@ -124,6 +125,7 @@ class Environment {
 	 */
 	public function setTokenBasedEnv($share) {
 		$origShareOwnerId = $share->getShareOwner();
+		\OC_Util::setupFS($origShareOwner);
 		$this->userFolder = $this->rootFolder->getUserFolder($origShareOwnerId);
 
 		$this->sharedNodeId = $share->getNodeId();
@@ -167,7 +169,7 @@ class Environment {
 		$path = $relativePath . '/' . $subPath;
 		$node = $this->getNodeFromUserFolder($path);
 
-		return $this->getResourceFromId($node->getId());
+		return $this->getResourceFromId($subPath);
 	}
 
 	/**
@@ -356,6 +358,24 @@ class Environment {
 	 */
 	private function getResourceFromFolderAndId($folder, $resourceId) {
 		$resourcesArray = $folder->getById($resourceId);
+		$filename = \OC::$server->getRequest()->getParam("file");
+		//$mountType = \OC::$server->getRequest()->getParam("mount");
+		$resourcesArray = array();
+		if ($filename && \OCA\Gallery\Environment\Environment::isTokenBasedEnv() === false) {
+			$node = $folder->get($filename);
+			if($node) {
+				$resourcesArray[] = $node;
+			}
+		} else {
+			if(ctype_digit("$resourceId")) {
+				$resourcesArray = $folder->getById($resourceId);
+			} else {
+				$info = $folder->get($resourceId);
+				if($info) {
+					$resourcesArray[] = $info;
+				}
+			}
+		}
 
 		if ($resourcesArray[0] === null) {
 			throw new NotFoundEnvException('Could not locate node linked to ID: ' . $resourceId);

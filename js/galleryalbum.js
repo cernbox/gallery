@@ -399,8 +399,17 @@
 			}
 
 			this.preloadOffset = i;
-			Thumbnails.loadBatch(fileIds, false);
-			Thumbnails.loadBatch(squareFileIds, true);
+			var paths = [];
+			for(var i = 0; i < items.length; i++) {
+				var item = items[i];
+				if(fileIds.indexOf(item.fileId) !== -1) {
+					paths.push(item.path);
+				} else if(squareFileIds.indexOf(item.fileId) !== -1) {
+					paths.push(item.path);
+				}
+			}
+			Thumbnails.loadBatch(fileIds, false, paths);
+			Thumbnails.loadBatch(squareFileIds, true, paths);
 		}
 	};
 
