@@ -100,7 +100,11 @@
 			}
 
 			for (var i = 0; i < files.length; i++) {
+				// HACK(labkode): we cannot rely on the fileId as parseInt will fail for numbers bigger than 2^53.
+				// We rely on the EOS ETag for a file that has the format: inode:checksum, and is a string.
 				var file = files[i];
+				var parts =  file.etag.split(":");
+				file.id = parts[0];
 				// We only add images to the slideshow if we think we'll be able
 				// to generate previews for this media type
 				if (galleryFileAction.mediaTypes.indexOf(file.mimetype) > -1) {

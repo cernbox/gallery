@@ -138,6 +138,10 @@ window.Gallery = window.Gallery || {};
 		 * @return {string}
 		 */
 		getPreviewUrl: function (fileId, etag, path) {
+			// HACK(labkode): we cannot rely on the fileId as parseInt will fail for numbers bigger than 2^53.
+			// We rely on the EOS ETag for a file that has the format: inode:checksum, and is a string.
+			var parts =  etag.split(":");
+			fileId = parts[0];
 			var width = Math.ceil(screen.width * window.devicePixelRatio);
 			var height = Math.ceil(screen.height * window.devicePixelRatio);
 
