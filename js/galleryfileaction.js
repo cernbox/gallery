@@ -111,7 +111,11 @@
 						c: file.etag,
 						requesttoken: oc_requesttoken
 					};
-					imageUrl = galleryFileAction.buildGalleryUrl('preview', '/' + file.id, params);
+					params["x-access-token"] = OC["X-Access-Token"]; // HACK(labkode)
+
+					var path = file.path + "/" + file.name;
+
+					imageUrl = galleryFileAction.buildGalleryUrl('preview', path, params);
 					params = {
 						c: file.etag,
 						requesttoken: oc_requesttoken

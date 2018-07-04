@@ -173,6 +173,7 @@
 					c: this.etag,
 					requesttoken: oc_requesttoken
 				};
+				params["x-access-token"] = OC["X-Access-Token"]; // HACK(labkode)
 				url = Gallery.utility.buildGalleryUrl(
 					'files',
 					'/download/' + this.fileId,

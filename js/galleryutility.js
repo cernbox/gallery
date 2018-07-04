@@ -154,7 +154,7 @@ window.Gallery = window.Gallery || {};
 				c: etag,
 				width: longEdge,
 				height: longEdge,
-				requesttoken: oc_requesttoken
+				requesttoken: oc_requesttoken,
 			};
 			return this.buildGalleryUrl('preview', '/' + fileId, params);
 		},

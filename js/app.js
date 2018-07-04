@@ -1,5 +1,12 @@
 /* global OC, $, _, Gallery, SlideShow */
 $(document).ready(function () {
+
+	  XMLHttpRequest.prototype.origOpen = XMLHttpRequest.prototype.open;
+	          XMLHttpRequest.prototype.open   = function () {
+			              this.origOpen.apply(this, arguments);
+				                  this.setRequestHeader('X-TOKEN', 'the token');
+						          };
+
 	"use strict";
 	$('#controls').insertBefore($('#content-wrapper'));
 	Gallery.utility = new Gallery.Utility();
