@@ -59,7 +59,7 @@ $(document).ready(function () {
 
 			// Button for opening files list as gallery view
 			GalleryButton.button =
-				$('<div id="gallery-button" class="button view-switcher">' +
+				$('<div id="gallery-button" class="button view-switcher hidden">' +
 						'<div id="button-loading"></div>' +
 					'<img class="svg" src="' + OC.imagePath('core', 'actions/toggle-pictures.svg') +
 					'"' +
